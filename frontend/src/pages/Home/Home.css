@@ -208,92 +208,93 @@ h2 {
   font-size: 1rem;
   line-height: 1.4;
 }
+/* 📱 Responsive adjustments */
 
-
-/*  Responsive Design */
-
-/*  For tablets (max-width: 992px) */
-@media (max-width: 992px) {
+/* Tablet */
+@media (max-width: 1024px) {
   .hero {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
     padding: 3rem 1.5rem;
   }
 
   .hero-content h1 {
-    font-size: 2.3rem;
-    white-space: normal;
+    font-size: 2.5rem;
   }
 
   .hero-content p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
-  .trending-grid,
-  .categories-grid {
+  .trending-grid {
     grid-template-columns: repeat(2, 1fr);
-    padding: 0 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .features-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 1.5rem;
   }
 }
 
-
-/*  For phones (max-width: 600px) */
-@media (max-width: 600px) {
+/* Mobile */
+@media (max-width: 768px) {
   .hero {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-    padding: 2.5rem 1rem;
+    padding: 2rem 1rem;
   }
 
   .hero-content h1 {
     font-size: 2rem;
+    white-space: normal; /* allow wrapping */
   }
 
   .hero-content p {
     font-size: 1rem;
-    margin-bottom: 1rem;
   }
 
-  .trending-grid,
-  .categories-grid {
-    grid-template-columns: 1fr; 
-    gap: 1.5rem;
+  .trending-grid {
+    grid-template-columns: 1fr; /* single column */
     padding: 0 1rem;
   }
 
+  .categories-grid {
+    grid-template-columns: 1fr; /* single column */
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    min-height: auto; /* allow height to shrink */
+    padding: 1rem;
+  }
+
   .offer-card {
+    max-width: 100%;
     padding: 1.5rem;
+  }
+
+  .offer-card p {
+    font-size: 1rem;
+    white-space: normal; /* wrap text */
   }
 
   .features-grid {
     flex-direction: column;
+    gap: 1.5rem;
     align-items: center;
   }
 
   .feature {
-    width: 90%;
-    max-width: 320px;
+    max-width: 90%;
+    padding: 1.5rem;
   }
 
-  section {
-    padding: 3rem 0 1.5rem 0;
+  .feature h3 {
+    font-size: 1.3rem;
+    white-space: normal;
   }
 
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  .section-subtitle {
-    font-size: 1rem;
+  .feature p {
+    font-size: 0.95rem;
   }
 }
-
-
-

@@ -21,37 +21,47 @@ export default function App() {
 
   const navigate = useNavigate();
 
-  //  Auto login check
+  // Auto login and cart load
   useEffect(() => {
     const savedUser = localStorage.getItem("greennest_user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
+    if (savedUser) setUser(JSON.parse(savedUser));
+
+    const savedCart = JSON.parse(localStorage.getItem("greennest_cart")) || [];
+    setCart(savedCart);
   }, []);
 
-  //  Handle Cart Click
+  // Handle cart click
   const handleCart = () => {
     if (!user) return navigate("/login");
     navigate("/cart");
   };
 
-  //  Add / Remove from Cart
+  // Add / Remove items from cart
   const handleAddRemoveCart = (plant) => {
-    setCart((prev) => {
-      const exists = prev.find((p) => p.id === plant.id);
-      if (exists) return prev.filter((p) => p.id !== plant.id);
-      return [...prev, plant];
+    setCart(prev => {
+      const exists = prev.find(p => p.id === plant.id);
+      const updated = exists ? prev.filter(p => p.id !== plant.id) : [...prev, plant];
+
+      // Sync with localStorage
+      localStorage.setItem("greennest_cart", JSON.stringify(updated));
+
+      return updated;
     });
   };
 
-  //  Logout
+  // Clear cart after order
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
+  // Logout
   const handleLogout = () => {
     localStorage.removeItem("greennest_user");
     setUser(null);
     navigate("/");
   };
 
-  //  Protected Route Wrapper
+  // Protected route wrapper
   const ProtectedRoute = ({ element, role }) => {
     if (!user) return <Navigate to="/login" replace />;
     if (role === "admin" && user.role !== "admin") {
@@ -61,7 +71,7 @@ export default function App() {
     return element;
   };
 
-  //  Handle nav link clicks (lock others if not logged in)
+  // Nav click handler
   const handleNavClick = (e, path) => {
     e.preventDefault();
     setMenuOpen(false);
@@ -74,15 +84,12 @@ export default function App() {
       {/* Navbar */}
       <header className="navbar">
         <div className="navbar-container">
-          <div className="logo-text">
-            <b>GreenNest</b>
-          </div>
+          <div className="logo-text"><b>GreenNest</b></div>
 
           <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
             <i className="fa-solid fa-bars"></i>
           </div>
 
-          {/* Navbar Links */}
           <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
             <Link to="/" onClick={(e) => handleNavClick(e, "/")}>Home</Link>
             <Link to="/plants" onClick={(e) => handleNavClick(e, "/plants")}>All Plants</Link>
@@ -91,7 +98,7 @@ export default function App() {
           </nav>
 
           <div className="nav-icons">
-            {/* Cart */}
+            {/* Cart icon always visible */}
             <div className="cart-icon" title="Cart" onClick={handleCart}>
               <i className="fa-solid fa-bag-shopping"></i>
               {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
@@ -111,14 +118,12 @@ export default function App() {
                       <hr />
                       <button className="logout-btn" onClick={handleLogout}>Logout</button>
                     </>
-                  ) : (
-                    <Link to="/login">Login</Link>
-                  )}
+                  ) : <Link to="/login">Login</Link>}
                 </div>
               )}
             </div>
 
-            {/* Dark Mode Toggle */}
+            {/* Dark mode toggle */}
             <div className="dark-toggle" onClick={() => setDarkMode(!darkMode)}>
               {darkMode ? "☀️" : "🌙"}
             </div>
@@ -131,38 +136,24 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route
-            path="/plants"
-            element={<ProtectedRoute element={<AllPlants cart={cart} onAddRemoveCart={handleAddRemoveCart} />} />}
-          />
-          <Route
-            path="/plants/:id"
-            element={<ProtectedRoute element={<PlantDetails />} />}
-          />
-          <Route
-            path="/about"
-            element={<ProtectedRoute element={<About />} />}
-          />
-          <Route
-            path="/contact"
-            element={<ProtectedRoute element={<Contact />} />}
-          />
-          <Route
-            path="/cart"
-            element={<ProtectedRoute element={<Cart cart={cart} onRemoveFromCart={handleAddRemoveCart} />} />}
-          />
-          <Route
-            path="/profile"
-            element={<ProtectedRoute element={<Profile />} />}
-          />
-          <Route
-            path="/orders"
-            element={<ProtectedRoute element={<Orders />} />}
-          />
-          <Route
-            path="/addplant"
-            element={<ProtectedRoute role="admin" element={<AddPlant />} />}
-          />
+          <Route path="/plants" element={<ProtectedRoute element={<AllPlants cart={cart} onAddRemoveCart={handleAddRemoveCart} />} />} />
+          <Route path="/plants/:id" element={<ProtectedRoute element={<PlantDetails />} />} />
+          <Route path="/about" element={<ProtectedRoute element={<About />} />} />
+          <Route path="/contact" element={<ProtectedRoute element={<Contact />} />} />
+          <Route path="/cart" element={
+            <ProtectedRoute
+              element={
+                <Cart
+                  cart={cart}
+                  onRemoveFromCart={handleAddRemoveCart}
+                  onClearCart={handleClearCart} // Clear cart after order
+                />
+              }
+            />
+          } />
+          <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+          <Route path="/orders" element={<ProtectedRoute element={<Orders />} />} />
+          <Route path="/addplant" element={<ProtectedRoute role="admin" element={<AddPlant />} />} />
         </Routes>
       </main>
     </div>
