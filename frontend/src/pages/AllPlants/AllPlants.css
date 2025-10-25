@@ -1,0 +1,121 @@
+.allplants-container {
+  padding: 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* 🌿 Title centered */
+.page-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2f5d50;
+  margin-bottom: 1.8rem;
+}
+
+/* 🔍 Filters row */
+.filters-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items = 3 equal columns */
+  gap: 2rem;
+  align-items: center;
+  background-color: #f8fbf8;
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Label styling */
+.filters-row label {
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  justify-content: center; /* center label + input together */
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Input + Select design */
+.filters-row select,
+.filters-row input {
+  width: 60%;
+  max-width: 250px;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.2s;
+}
+
+.filters-row select:hover,
+.filters-row input:hover {
+  border-color: #2f5d50;
+}
+
+.filters-row select:focus,
+.filters-row input:focus {
+  border-color: #2f5d50;
+  box-shadow: 0 0 4px rgba(47, 93, 80, 0.3);
+}
+
+/* 🪴 Grid layout for cards */
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 2rem;
+}
+
+/* 📱 Responsive Styles */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .filters-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .filters-row select,
+  .filters-row input {
+    width: 70%;
+    max-width: 200px;
+  }
+  .plants-grid {
+    grid-template-columns: 1fr; /* 1 per row on tablets */
+    gap: 1.5rem;
+  }
+}
+
+/* Phones (up to 767px) */
+@media (max-width: 767px) {
+  .filters-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .filters-row label {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .filters-row select,
+  .filters-row input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+   .plants-grid {
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+}

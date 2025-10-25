@@ -1,0 +1,174 @@
+/* ---------------- Reset & Base ---------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fa;
+  color: #1a202c;
+}
+
+/* ---------------- Cart Container ---------------- */
+.cart-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1a531b;
+  font-weight: 600;
+}
+
+/* ---------------- Empty Cart ---------------- */
+.empty-cart {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #718096;
+  margin-top: 2rem;
+}
+
+/* ---------------- Cart Items ---------------- */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-radius: 0.8rem;
+  background-color: #f0f7f2;
+  transition: transform 0.2s ease;
+  gap: 2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cart-item:hover {
+  transform: translateY(-3px);
+}
+
+.item-info h3 {
+  font-size: 1.1rem;
+  color: #2d3748;
+  margin-bottom: 0.2rem;
+}
+
+.item-info p {
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+/* ---------------- Remove Button ---------------- */
+.remove-btn {
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  margin-left: auto;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove-btn:hover {
+  background-color: #c53030;
+  transform: scale(1.05);
+}
+
+/* ---------------- Cart Summary ---------------- */
+.cart-summary {
+  margin-top: 2.5rem;
+  text-align: right;
+  border-top: 2px solid #e2e8f0;
+  padding-top: 1.5rem;
+}
+
+.cart-summary h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a531b;
+  margin-bottom: 1rem;
+}
+
+/* ---------------- Order Button ---------------- */
+.order-btn {
+  background-color: #1a531b;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(26, 83, 27, 0.2);
+}
+
+.order-btn:hover {
+  background-color: #257d27;
+  transform: translateY(-2px);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .cart-summary {
+    text-align: left;
+  }
+
+  .remove-btn,
+  .order-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .cart-item {
+    padding: 0.8rem 1rem;
+  }
+
+  .item-info h3 {
+    font-size: 1rem;
+  }
+
+  .cart-summary h3 {
+    font-size: 1.2rem;
+  }
+}

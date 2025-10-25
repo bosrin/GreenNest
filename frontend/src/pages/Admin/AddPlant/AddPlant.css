@@ -1,0 +1,191 @@
+/* 🌿 Main Container */
+.add-plant-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #f9fafb;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
+  color: #2d3748;
+  transition: all 0.3s ease;
+}
+
+/* 🌿 Tabs (Admin Actions) */
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.admin-actions button {
+  background: #e6f4ea;
+  border: 2px solid #4caf50;
+  color: #2f855a;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.admin-actions button:hover {
+  background: #4caf50;
+  color: white;
+}
+
+.admin-actions .active {
+  background: #4caf50;
+  color: white;
+  box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* 🌿 Form Section */
+.add-plant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: auto;
+}
+
+.add-plant-form label {
+  font-weight: 600;
+  margin-top: 5px;
+  color: #2d3748;
+}
+
+.add-plant-form input,
+.add-plant-form select {
+  padding: 10px 12px;
+  border: 1.5px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.add-plant-form input:focus,
+.add-plant-form select:focus {
+  border-color: #4caf50;
+}
+
+.add-plant-form button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.add-plant-form button:hover {
+  background: #388e3c;
+}
+
+/* 🌿 Table Section */
+.plant-list, .orders-list {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.plant-list h2, .orders-list h2 {
+  color: #2f855a;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.plant-table, .order-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.plant-table th,
+.plant-table td,
+.order-table th,
+.order-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.plant-table th,
+.order-table th {
+  background: #e6f4ea;
+  font-weight: 600;
+  color: #2f855a;
+}
+
+.plant-table tr:hover,
+.order-table tr:hover {
+  background: #f9f9f9;
+}
+
+/* 🌿 Buttons inside table */
+.plant-table button,
+.delete-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.plant-table button {
+  background: #3182ce;
+  color: white;
+}
+
+.plant-table button:hover {
+  background: #2b6cb0;
+}
+
+.delete-btn {
+  background: #e53e3e;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #c53030;
+}
+
+/* 🌿 Order Items styling */
+.order-table td div {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+/* 🌿 Responsive */
+@media (max-width: 768px) {
+  .add-plant-container {
+    padding: 20px;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .plant-table, .order-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .add-plant-form {
+    width: 100%;
+  }
+}

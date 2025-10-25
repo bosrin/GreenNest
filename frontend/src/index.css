@@ -1,0 +1,96 @@
+/* Reset some defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Body styles */
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #f4f7f6;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Basic navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Nav links */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 12px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Full-screen content area */
+main {
+  flex: 1; /* fills remaining height below nav */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: calc(100vh - 60px); /* ensures full height even with small content */
+  text-align: center;
+  width: 100%; /* always fill width */
+}
+
+/* Remove content width limit */
+main > div {
+  width: 100%; /* fills available width */
+  max-width: none; /* no max-width */
+}
+
+/* Responsive adjustments (optional for padding only) */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    margin: 8px;
+    font-size: 0.95rem;
+  }
+
+  main {
+    padding: 30px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    display: block;
+    margin: 5px 0;
+    font-size: 0.9rem;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+}
